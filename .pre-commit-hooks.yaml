@@ -12,7 +12,7 @@
     always_run: true
 -   id: gbp-ensure-copyright
     name: gbp ensure copyright
-    entry: bash -c 'grep -qPi "20\d\d\sdebian" debian/copyright || (echo "Missing debian copyright!" && exit 1)'
+    entry: bash -c 'grep -qPi "20\d\d\s+debian" debian/copyright || (echo "Missing debian copyright!" && exit 1)'
     language: system
     always_run: true
     types: [file]
