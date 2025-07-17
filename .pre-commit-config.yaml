@@ -1,7 +1,7 @@
 repos:
 # -   repo: https://github.com/skosachiov/gbp-pre-commit-hooks
 -   repo: ~/.cache/pre-commit/gbp-pre-commit-hooks
-    rev: v1.0.4
+    rev: v1.0.5
     hooks:
     -   id: gbp-pre-commit-hooks-pull
     -   id: gbp-no-commit-to-branch
