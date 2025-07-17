@@ -1,6 +1,8 @@
 # gbp-pre-commit-hooks
 
 ```
+apt install pre-commit*
+
 cd ~/git/<repo>
 
 git clone -c http.extraHeader="Authorization: Bearer ..." https://github.com/skosachiov/gbp-pre-commit-hooks ~/.cache/pre-commit/gbp-pre-commit-hooks
@@ -12,6 +14,15 @@ ln -s ~/.cache/pre-commit/gbp-pre-commit-hooks/.pre-commit-config.yaml .pre-comm
 pre-commit install
 
 ```
+
+## update
+
+```
+cd ~/.cache/pre-commit/gbp-pre-commit-hooks
+git pull
+cd -
+```
+
 
 ## clean
 
