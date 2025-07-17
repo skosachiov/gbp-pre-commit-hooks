@@ -6,7 +6,7 @@
     always_run: true
 -   id: gbp-no-commit-to-branch
     name: gbp no commit to branch
-    entry: PYTHONPATH=~/.cache/pre-commit/gbp-pre-commit-hooks python -m gbp_pre_commit_hooks.no_commit_to_branch
+    entry: env PYTHONPATH=~/.cache/pre-commit/gbp-pre-commit-hooks python -m gbp_pre_commit_hooks.no_commit_to_branch
     language: system
     pass_filenames: false
     always_run: true
