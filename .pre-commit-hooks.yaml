@@ -1,6 +1,7 @@
--   id: autoupdate
-    name: autoupdate
-    entry: autoupdate
+-   id: gbp-pre-commit-hooks-pull
+    name: gbp pre commit hooks pull
+    entry: gbp_pre_commit_hooks_pull
+    entry: bash -c '(cd ~/.cache/pre-commit/gbp-pre-commit-hooks && git pull && cd -) || (echo "Cannot update gbp pre commit hooks!" && exit 1)'
     language: system
     always_run: true
 -   id: gbp-no-commit-to-branch
