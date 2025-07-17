@@ -1,0 +1,13 @@
+-   id: gbp-no-commit-to-branch
+    name: gbp no commit to branch
+    entry: gbp_no_commit_to_branch
+    language: system
+    pass_filenames: false
+    always_run: true
+-   id: gbp-ensure-copyright
+    name: gbp ensure copyright
+    entry: bash -c 'grep -qPi "20\d\d\sdebian" debian/copyright || (echo "Missing debian copyright!" && exit 1)'
+    language: system
+    always_run: true
+    types: [file]
+    files: ^debian/copyright$

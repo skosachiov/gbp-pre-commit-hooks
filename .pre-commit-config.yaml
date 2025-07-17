@@ -1,0 +1,8 @@
+repos:
+# -   repo: https://github.com/skosachiov/gbp-pre-commit-hooks
+-   repo: ~/.cache/pre-commit/gbp-pre-commit-hooks
+    rev: v1.0.0
+    hooks:
+    -   id: autoupdate
+    -   id: gbp-no-commit-to-branch
+    -   id: gbp-ensure-copyright

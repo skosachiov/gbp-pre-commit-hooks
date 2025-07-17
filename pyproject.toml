@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gbp-pre-commit"
+version = "0.1.0"
+description = "Gbp pre-commit support"
+
+[project.optional-dependencies]
+dev = ["pre-commit>=3.0"]
+
+[project.entry-points."pre_commit"]
+gbp-no-commit-to-branch = "gbp_pre_commit_hooks.no_commit_to_branch:main"
