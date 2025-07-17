@@ -17,3 +17,10 @@
     always_run: true
     types: [file]
     files: ^debian/copyright$
+-   id: gbp-conf-base-check
+    name: gbp conf base check
+    entry: bash -c 'comm -13 <(sort -u debian/gbp.conf) <(sort -u ~/.cache/pre-commit/gbp-pre-commit-hooks/assets/gbp.conf) | grep -q '[^[:space:]]'; exit $((! $?)) || (echo "File gbp.conf does not meet company standard!" && exit 1)'
+    language: system
+    always_run: true
+    types: [file]
+    files: ^debian/gbp.conf$
