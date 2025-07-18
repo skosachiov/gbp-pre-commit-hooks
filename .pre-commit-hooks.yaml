@@ -1,12 +1,11 @@
 -   id: gbp-pre-commit-hooks-pull
     name: gbp pre commit hooks pull
-    entry: gbp_pre_commit_hooks_pull
     entry: bash -c '(cd ~/.cache/pre-commit/gbp-pre-commit-hooks && git pull && cd -) || (echo "Cannot update gbp pre commit hooks!" && exit 1)'
     language: system
     always_run: true
 -   id: gbp-no-commit-to-branch
     name: gbp no commit to branch
-    entry: bash -c 'PYTHONPATH=~/.cache/pre-commit/gbp-pre-commit-hooks python -m gbp_pre_commit_hooks.no_commit_to_branch -b upstream'
+    entry: bash -c 'PYTHONPATH=~/.cache/pre-commit/gbp-pre-commit-hooks python3 -m gbp_pre_commit_hooks.no_commit_to_branch -b upstream'
     language: system
     pass_filenames: false
     always_run: true
