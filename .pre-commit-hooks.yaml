@@ -3,12 +3,14 @@
     entry: bash -c '(cd ~/.cache/pre-commit/gbp-pre-commit-hooks && git pull && cd -) || (echo "Cannot update gbp pre commit hooks!" && exit 1)'
     language: system
     always_run: true
+
 -   id: gbp-no-commit-to-branch
     name: gbp no commit to branch
     entry: bash -c 'PYTHONPATH=~/.cache/pre-commit/gbp-pre-commit-hooks python3 -m gbp_pre_commit_hooks.no_commit_to_branch -b upstream'
     language: system
     pass_filenames: false
     always_run: true
+
 -   id: gbp-ensure-copyright
     name: gbp ensure copyright
     entry: bash -c 'grep -qPi "20\d\d\s+debian" debian/copyright || (echo "Missing debian copyright!" && exit 1)'
@@ -16,6 +18,7 @@
     always_run: true
     types: [file]
     files: ^debian/copyright$
+
 -   id: gbp-conf-base-check
     name: gbp conf base check
     entry: bash -c 'comm -13 <(sort -u debian/gbp.conf) <(sort -u ~/.cache/pre-commit/gbp-pre-commit-hooks/assets/gbp.conf) | grep -q '[^[:space:]]'; exit $((! $?)) || (echo "File gbp.conf does not meet company standard!" && exit 1)'
@@ -23,3 +26,37 @@
     always_run: true
     types: [file]
     files: ^debian/gbp.conf$
+
+-   id: gbp-check-source-format-quilt
+    name: Check source format is quilt when patches exist
+    entry: bash -c 'if [ -n "$(find debian/patches -name '*.patch' -print -quit 2>/dev/null)" ]; then grep -q "^3.0 (quilt)$" debian/source/format || (echo "Patches exist but debian/source/format is not quilt!" && exit 1); fi'
+    language: system
+    always_run: true
+    types: [file]
+    files: ^debian/source/format$
+
+-   id: gbp-check-source-format-native
+    name: Check source format is native when no patches exist
+    entry: bash -c 'if [ -z "$(find debian/patches -name '*.patch' -print -quit 2>/dev/null)" ]; then grep -q "^3.0 (native)$" debian/source/format || (echo "No patches exist but debian/source/format is not native!" && exit 1); fi'
+    language: system
+    always_run: true
+    types: [file]
+    files: ^debian/source/format$
+
+-   id: gbp-exclude-jenkins
+    name: Ensure .jenkins is excluded in source options
+    entry: >
+      bash -c '
+      if [ -d ".jenkins" ]; then
+          if ! ( ( [ -f debian/source/options ] && grep -q "^extend-diff-ignore\s*=\s*\.jenkins" debian/source/options ) ||
+               ( [ -f debian/source/local-options ] && grep -q "^extend-diff-ignore\s*=\s*\.jenkins" debian/source/local-options ) ); then
+              echo "Error: .jenkins directory exists but not excluded in debian/source/options or local-options";
+              echo "Add either of these lines to exclude it:";
+              echo "extend-diff-ignore=.jenkins";
+              exit 1;
+          fi;
+      fi'
+    language: system
+    always_run: true
+    types: [file]
+    files: ^(debian/source/(options|local-options)|\.jenkins/.*)$
