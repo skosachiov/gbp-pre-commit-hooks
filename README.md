@@ -4,7 +4,11 @@
 apt install pre-commit*
 
 cd ~/git/<repo>
+```
 
+copy-paste into terminal:
+
+```
 git clone -c http.extraHeader="Authorization: Bearer ..." https://github.com/skosachiov/gbp-pre-commit-hooks ~/.cache/pre-commit/gbp-pre-commit-hooks
 
 echo ".pre-commit-config.yaml" >> .git/info/exclude
