@@ -19,6 +19,14 @@ pre-commit install
 
 ```
 
+## run
+
+git commit -am "msg"
+
+## skip
+
+git commit -am "msg" --no-verify
+
 ## update
 
 ```
@@ -26,7 +34,6 @@ cd ~/.cache/pre-commit/gbp-pre-commit-hooks
 git pull
 cd -
 ```
-
 
 ## clean
 
