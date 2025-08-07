@@ -11,7 +11,7 @@ copy-paste into terminal:
 ```
 git clone -c http.extraHeader="Authorization: Bearer ..." https://github.com/skosachiov/gbp-pre-commit-hooks ~/.cache/pre-commit/gbp-pre-commit-hooks
 
-echo ".pre-commit-config.yaml" >> .git/info/exclude
+grep -qxF ".pre-commit-config.yaml" .git/info/exclude || echo ".pre-commit-config.yaml" >> .git/info/exclude
 
 ln -s ~/.cache/pre-commit/gbp-pre-commit-hooks/.pre-commit-config.yaml .pre-commit-config.yaml
 

@@ -10,4 +10,5 @@ repos:
     -   id: gbp-check-source-format-quilt
     -   id: gbp-check-source-format-native
     -   id: gbp-exclude-jenkins
+    -   id: gbp-remote-has-tag
 
