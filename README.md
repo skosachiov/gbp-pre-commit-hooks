@@ -1,4 +1,8 @@
-# gbp-pre-commit-hooks
+# gbp-pre-commit-hooks or gbp-pre-push-hooks
+
+Initially, the `pre-commit` hook was used, but later, in order not to interfere with the developer, the checks were moved to the `pre-push` hook.
+
+## install deps
 
 ```
 apt install pre-commit*
@@ -6,10 +10,11 @@ apt install pre-commit*
 cd ~/git/<repo>
 ```
 
-copy-paste into terminal:
+## copy-paste into terminal
+
 
 ```
-git clone -c http.extraHeader="Authorization: Bearer ..." https://github.com/skosachiov/gbp-pre-commit-hooks ~/.cache/pre-commit/gbp-pre-commit-hooks
+git clone https://github.com/skosachiov/gbp-pre-commit-hooks ~/.cache/pre-commit/gbp-pre-commit-hooks
 
 grep -qxF ".pre-commit-config.yaml" .git/info/exclude || echo ".pre-commit-config.yaml" >> .git/info/exclude
 
@@ -17,15 +22,22 @@ ln -s ~/.cache/pre-commit/gbp-pre-commit-hooks/.pre-commit-config.yaml debian/.p
 
 cp ~/.cache/pre-commit/gbp-pre-commit-hooks/assets/pre-push .git/hooks/
 
+chmod 775 .git/hooks/pre-push
+
+```
+
+
+```
+git clone -c http.extraHeader="Authorization: Bearer ..." https://github.com/skosachiov/gbp-pre-commit-hooks ~/.cache/pre-commit/gbp-pre-commit-hooks
 ```
 
 ## run
 
-git commit -am "msg"
+git push
 
 ## skip
 
-git commit -am "msg" --no-verify
+git push --no-verify
 
 ## update
 

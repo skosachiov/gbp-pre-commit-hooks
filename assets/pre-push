@@ -2,7 +2,7 @@
 
 # start templated
 INSTALL_PYTHON=/usr/bin/python3
-ARGS=(hook-impl --config=debian/.pre-commit-config.yaml --hook-type=pre-commit)
+ARGS=(hook-impl --config=debian/.pre-commit-config.yaml --hook-type=pre-push)
 # end templated
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
