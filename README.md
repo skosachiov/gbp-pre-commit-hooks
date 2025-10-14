@@ -13,9 +13,9 @@ git clone -c http.extraHeader="Authorization: Bearer ..." https://github.com/sko
 
 grep -qxF ".pre-commit-config.yaml" .git/info/exclude || echo ".pre-commit-config.yaml" >> .git/info/exclude
 
-ln -s ~/.cache/pre-commit/gbp-pre-commit-hooks/.pre-commit-config.yaml .pre-commit-config.yaml
+ln -s ~/.cache/pre-commit/gbp-pre-commit-hooks/.pre-commit-config.yaml debian/.pre-commit-config.yaml
 
-pre-commit install
+cp ~/.cache/pre-commit/gbp-pre-commit-hooks/assets/pre-push .git/hooks/
 
 ```
 
