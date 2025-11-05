@@ -71,12 +71,13 @@
 
 -   id: gbp-check-changelog-version-format
     name: check changelog version format matches source format
-    entry: bash -c '
-      version=$(head -n1 debian/changelog | grep -oP "\(\K([^)]+)")
+    entry: >
+      bash -c '
+      version=$(head -n1 debian/changelog | grep -oP "\(\K([^)]+)");
       if grep -q "^3.0 (quilt)$" debian/source/format; then
-          echo "$version" | grep -qP "-\d+" || (echo "Quilt format requires version with -[0-9] suffix, found: $version" && exit 1)
+          echo "$version" | grep -qP "\-\d+" || (echo "Quilt format requires version with -[0-9] suffix, found: $version" && exit 1);
       else
-          echo "$version" | grep -qP "-\d+" && (echo "Native format requires version without -[0-9] suffix, found: $version" && exit 1)
+          echo "$version" | grep -qP "\-\d+" && (echo "Native format requires version without -[0-9] suffix, found: $version" && exit 1);
       fi'
     language: system
     always_run: true
