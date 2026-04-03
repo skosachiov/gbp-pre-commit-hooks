@@ -89,3 +89,15 @@
     always_run: true
     types: [file]
     files: ^debian/changelog$
+
+-   id: gbp-check-latest-changelog-version-gt
+    name: check latest changelog version gt
+    entry: >
+      bash -c '
+      { read v1; read v2; } < <(grep -E '^\w* \([^)]+\)' debian/changelog | head -n 2 | sed -E 's/^[^ ]+ \(([^)]+)\).*/\1/');
+      dpkg --compare-versions "$v1" gt "$v2";
+      '
+    language: system
+    always_run: true
+    types: [file]
+    files: ^debian/changelog$
