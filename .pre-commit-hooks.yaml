@@ -91,7 +91,7 @@
     files: ^debian/changelog$
 
 -   id: gbp-check-latest-changelog-version-gt
-    name: check latest changelog version gt
+    name: check the latest changelog version gt the previous
     entry: >
       bash -c '
       { read v1; read v2; } < <(grep -E '^\w* \([^)]+\)' debian/changelog | head -n 2 | sed -E 's/^[^ ]+ \(([^)]+)\).*/\1/');
